@@ -146,7 +146,7 @@ namespace Trellis.TodoTests
         [TestMethod]
         public void ChangeTodoList_AddTodoItemToTodoList()
         {
-            TodoList todoList = new TodoList(m_TodoItems);
+            TodoList todoList = new TodoList(m_TodoItems, false);
 
             //Create new Todo Item
             TodoItem item = new TodoItem
@@ -179,7 +179,7 @@ namespace Trellis.TodoTests
         [TestMethod]
         public void ChangeTodoList_ModifyTodoItemInTodoList()
         {
-            TodoList todoList = new TodoList(m_TodoItems);
+            TodoList todoList = new TodoList(m_TodoItems, false);
 
             int iTodoID = 3;
 
@@ -203,7 +203,7 @@ namespace Trellis.TodoTests
         [TestMethod]
         public void ChangeTodoList_DeleteTodoItemFromTodoList()
         {
-            TodoList todoList = new TodoList(m_TodoItems);
+            TodoList todoList = new TodoList(m_TodoItems, false);
             
             int iTodoID = 2;
 

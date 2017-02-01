@@ -22,7 +22,7 @@ namespace Trellis.TodoModel
 
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Method)]
     public class ExcludeAttribute : Attribute
-    {        
+    {
     }
 
     public abstract class DataModelList<ObjType> : IEnumerable<ObjType>
@@ -31,6 +31,8 @@ namespace Trellis.TodoModel
 
         protected TodoDB m_dsSource = null;
         protected List<ObjType> m_lstItems = new List<ObjType>();
+
+        protected bool m_blAccessDataSource = true;
 
         #endregion
 
@@ -69,12 +71,13 @@ namespace Trellis.TodoModel
         /// <summary>
         /// Constructor
         /// </summary>
-        internal DataModelList(List<ObjType> items)
-            :base()
+        internal DataModelList(List<ObjType> items, bool blAccessDataSource = true)
+            : base()
         {
             try
             {
                 m_lstItems.AddRange(items);
+                m_blAccessDataSource = blAccessDataSource;
             }
             catch (Exception err)
             {
@@ -170,7 +173,7 @@ namespace Trellis.TodoModel
                 ErrorHandler.ShowErrorMessage(err, "Error in Contains function of DataModelList class.");
                 return false;
             }
-        }    
+        }
 
         /// <summary>
         /// Gets the count of all items in the data model list.
@@ -187,8 +190,8 @@ namespace Trellis.TodoModel
     }
 
     public abstract class TodoModelItem
-    {        
-        protected DataRow m_source = null;        
+    {
+        protected DataRow m_source = null;
 
         /// <summary>
         /// Constructor
@@ -206,14 +209,14 @@ namespace Trellis.TodoModel
                 ErrorHandler.ShowErrorMessage(err, "Error in Constructor Overload 1 of TodoModelItem class.");
             }
         }
-        
+
         /// <summary>
         /// Constructor.  This version of constructor should only be used for unit testing.
         /// </summary>
         public TodoModelItem()
         {
             try
-            {                
+            {
                 ItemStatus = TodoModelItemStatus.Unmodified;
             }
             catch (Exception err)
@@ -224,7 +227,7 @@ namespace Trellis.TodoModel
 
         [Exclude]
         public TodoModelItemStatus ItemStatus { get; set; }
-        
+
         /// <summary>
         /// Syncs all data from the underlying row/record source linked to the model to the Todo data model class.
         /// </summary>
@@ -240,7 +243,7 @@ namespace Trellis.TodoModel
                     ExcludeAttribute attr = p.GetCustomAttribute<ExcludeAttribute>();
                     bool blBypass = (attr == null) ? false : true;
 
-                    if(!blBypass)
+                    if (!blBypass)
                     {
                         string strFieldName = p.Name;
                         p.SetValue(this, Convert.ChangeType(m_source[strFieldName], p.PropertyType));
@@ -302,7 +305,7 @@ namespace Trellis.TodoModel
     }
 
     public class User : TodoModelItem
-    {        
+    {
         /// <summary>
         /// Constructor
         /// </summary>
@@ -316,12 +319,12 @@ namespace Trellis.TodoModel
         /// Constructor.  This version of constructor should only be used for unit testing.
         /// </summary>
         public User()
-            :base()
+            : base()
         {
         }
 
         public int UserID { get; set; }
-        public string UserName { get; set; }                    
+        public string UserName { get; set; }
     }
 
     public class TodoItem : TodoModelItem
@@ -339,20 +342,20 @@ namespace Trellis.TodoModel
         /// Constructor.  This version of constructor should only be used for unit testing.
         /// </summary>
         public TodoItem()
-            :base()
+            : base()
         {
         }
-        
+
         public int TodoID { get; set; }
 
         public string Task { get; set; }
 
-        public DateTime Deadline { get; set; }        
+        public DateTime Deadline { get; set; }
 
-        public bool Completed { get; set; }        
+        public bool Completed { get; set; }
 
-        public string Details { get; set; }                
-        
+        public string Details { get; set; }
+
         public int UserID { get; set; }
     }
 }

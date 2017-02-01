@@ -16,15 +16,15 @@ namespace Trellis.TodoModel
         void AddItem(TodoItem item);
         TodoItem GetByIndex(int iIndex);
         TodoItem GetItem(int iTodoID);
-        
+
         void DeleteByIndex(int iIndex);
         void DeleteItem(int iTodoID);
-        void Load(User user);    
+        void Load(User user);
         IList<TodoItem> Items { get; }
         bool Contains(int iKeyID);
         void Clear();
         int Count { get; }
-        int Update();        
+        int Update();
     }
 
     public class TodoList : DataModelList<TodoItem>, IEnumerable<TodoItem>, ITodoList
@@ -34,9 +34,7 @@ namespace Trellis.TodoModel
         private User m_User = null;
         //private List<TodoItem> m_lstTodoItems = new List<TodoItem>();
         private List<TodoItem> m_lstDelTodoItems = new List<TodoItem>();
-
-        private int m_iTodoIDCounter = 1;
-
+        
         #endregion
 
         #region Properties
@@ -48,8 +46,8 @@ namespace Trellis.TodoModel
         /// Constructor
         /// </summary>
         public TodoList()
-            :base()
-        {            
+            : base()
+        {
         }
 
         /// <summary>
@@ -57,18 +55,18 @@ namespace Trellis.TodoModel
         /// </summary>
         /// <param name="dsSource"></param>
         public TodoList(object dsSource)
-            :base((TodoDB) dsSource)
-        {            
+            : base((TodoDB)dsSource)
+        {
         }
 
         /// <summary>
         /// Constructor.  This constructor will be used for unit testing.
         /// </summary>
-        public TodoList(List<TodoItem> items)
-            :base(items)
+        public TodoList(List<TodoItem> items, bool blAccessDataSource = true)
+            : base(items, blAccessDataSource)
         {
             try
-            {                
+            {
             }
             catch (Exception err)
             {
@@ -101,12 +99,7 @@ namespace Trellis.TodoModel
 
                     //m_lstTodoItems.Add(todo);
                     m_lstItems.Add(todo);
-                }//next rowTodoItem
-
-                if (m_lstItems.Count > 0)
-                    m_iTodoIDCounter = m_lstItems.Max(t => t.TodoID) + 1;
-                else
-                    m_iTodoIDCounter = 1;
+                }//next rowTodoItem                
             }
             catch (Exception err)
             {
@@ -127,7 +120,7 @@ namespace Trellis.TodoModel
             try
             {
                 //NOTE: In production code a counter table would be used instead.
-                TodoItem item = new TodoModel.TodoItem(m_dsSource.TodoItems.NewTodoItemsRow());                
+                TodoItem item = new TodoModel.TodoItem(m_dsSource.TodoItems.NewTodoItemsRow());
                 item.ItemStatus = TodoModelItemStatus.Detached;
                 item.UserID = m_User.UserID;
 
@@ -150,7 +143,7 @@ namespace Trellis.TodoModel
                 item.ItemStatus = TodoModelItemStatus.New;
                 item.TodoID = GetNextTodoID();
 
-                m_lstItems.Add(item);                
+                m_lstItems.Add(item);
             }
             catch (Exception err)
             {
@@ -169,7 +162,7 @@ namespace Trellis.TodoModel
                 TodoItem item = GetByIndex(iIndex);
                 DeleteItem(item.TodoID);
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 ErrorHandler.ShowErrorMessage(err, "Error in DeleteByIndex function of TodoList class.");
             }
@@ -184,9 +177,9 @@ namespace Trellis.TodoModel
         {
             try
             {
-                TodoItem item = GetItem(iTodoID);                
+                TodoItem item = GetItem(iTodoID);
 
-                if(item.ItemStatus != TodoModelItemStatus.New)
+                if (item.ItemStatus != TodoModelItemStatus.New)
                     m_lstDelTodoItems.Add(item);
 
                 m_lstItems.Remove(item);
@@ -199,7 +192,7 @@ namespace Trellis.TodoModel
         }
 
         #endregion
-        
+
         #region Todo List Item Retrieval and Enumeration Properties, Functions
 
         /// <summary>
@@ -210,7 +203,7 @@ namespace Trellis.TodoModel
         public override TodoItem GetItem(int iKey)
         {
             try
-            {                
+            {
                 TodoItem item = m_lstItems.Find(t => t.TodoID == iKey);
                 return item;
             }
@@ -220,24 +213,23 @@ namespace Trellis.TodoModel
                 return null;
             }
         }
-       
+
         #endregion
-        
+
 
         #region Todo List Utility Properties, Functions
 
         /// <summary>
         /// Clears the list of all TodoItems and the underlying data source of all data.
         /// </summary>
-        public override void Clear()            
+        public override void Clear()
         {
             try
             {
                 base.Clear();
-                
-                m_User = null;                
+
+                m_User = null;
                 m_lstDelTodoItems.Clear();                
-                m_iTodoIDCounter = 1;
             }
             catch (Exception err)
             {
@@ -253,7 +245,15 @@ namespace Trellis.TodoModel
         {
             try
             {
-                return TodoDataSync.GetCounterID("TodoID");
+                if (m_blAccessDataSource)
+                    return TodoDataSync.GetCounterID("TodoID");
+                else
+                {
+                    if (m_lstItems.Count > 0)
+                        return m_lstItems.Max(t => t.TodoID) + 1;
+                    else
+                        return 1;
+                }//end if
             }
             catch (Exception err)
             {
@@ -307,7 +307,7 @@ namespace Trellis.TodoModel
 
                 foreach (TodoItem item in lstModTodoItems)
                 {
-                    item.SyncDataToSource();                    
+                    item.SyncDataToSource();
                 }//next item                        
 
                 foreach (TodoItem item in m_lstDelTodoItems)
@@ -327,7 +327,7 @@ namespace Trellis.TodoModel
                 ErrorHandler.ShowErrorMessage(err, "Error in Update Overload 1 function of TodoList class.");
                 return -1;
             }
-        }        
+        }
 
         #endregion
     }
