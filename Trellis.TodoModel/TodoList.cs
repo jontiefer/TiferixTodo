@@ -49,7 +49,7 @@ namespace Trellis.TodoModel
         /// </summary>
         public TodoList()
             :base()
-        {
+        {            
         }
 
         /// <summary>

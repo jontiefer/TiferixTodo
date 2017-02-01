@@ -1,1 +1,1 @@
-sqlcmd -S .\TRELLISSQLDB -v FullScriptDir="%CD%" -i TodoDBAttach.sql -b
+sqlcmd -S .\TIFERIXDB -v FullScriptDir="%CD%" -i TodoDBAttach.sql -b

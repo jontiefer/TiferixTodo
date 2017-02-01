@@ -202,9 +202,11 @@ Backup*/
 UpgradeLog*.XML
 UpgradeLog*.htm
 
+#NOTE: SQL Server files will be included for the test application.   In production programs, databases would be scripted using 
+#their schema.
 # SQL Server files
-*.mdf
-*.ldf
+#*.mdf
+#*.ldf
 
 # Business Intelligence projects
 *.rdl.data

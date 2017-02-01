@@ -6,8 +6,7 @@ This is the complete solution of the Todo List test application program develope
 
 
 ## SQL Server Installation
-The SQL Server database engine is used as the backend data source for the Todo List application.  TodoDB.mdf is the name of the database file used by the TodoList application.  It will be necessary to attach the TodoDB database to an existing or new instance of SQL Server installed on the machine.   I've included a TodoDBAttach script file and a TodoDBAttach batch file to ease with the process of attaching the database file to the instance.  In addition to attaching the database, you must update the connection strings in the Trellis.TodoData project so that they are referencing the SQL Server instance to which you have attached the TodoDB database file.  
-
+The SQL Server database engine is used as the backend data source for the Todo List application.  TodoDB.mdf is the name of the database file used by the TodoList application.  It will be necessary to attach the TodoDB database to an existing or new instance of SQL Server installed on the machine.   I've included a TodoDBAttach script file and a TodoDBAttach batch file to ease with the process of attaching the database file to the instance.  In addition to attaching the database, you must update the connection strings in the Trellis.TodoData project so that they are referencing the SQL Server instance to which you have attached the TodoDB database file.  Please note in a production environment, this database would be scripted, rather than attached.  This pre-loaded database is used only for purpose of the sample application.
 
 ## Attaching TodoDB Database to SQL Server Instance
 Here is a detailed, step-by-step set of instructions on how to attach the database to the SQL Server instance on your machine:<br/>

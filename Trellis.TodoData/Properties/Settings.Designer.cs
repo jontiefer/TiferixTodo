@@ -26,8 +26,7 @@ namespace Trellis.TodoData.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\TRELLISSQLDB;Initial Catalog=TodoDB;Integrated Security=Tru" +
-            "e")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\TIFERIXDB;Initial Catalog=TodoDB;Integrated Security=True")]
         public string TodoDBConnectionString {
             get {
                 return ((string)(this["TodoDBConnectionString"]));
