@@ -570,6 +570,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimizeBox = false;
             this.Name = "frmTodoEdit";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "View/Edit Todo Item";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTodoEdit_FormClosing);
             this.Load += new System.EventHandler(this.frmTodoEdit_Load);
