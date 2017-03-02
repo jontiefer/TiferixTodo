@@ -1,4 +1,4 @@
 CREATE DATABASE TodoDB
-    ON (FILENAME = '$(FullScriptDir)\Trellis.TodoData\TodoDB.mdf'),   
-    (FILENAME = '$(FullScriptDir)\Trellis.TodoData\TodoDB_Log.ldf')   
+    ON (FILENAME = '$(FullScriptDir)\Tiferix.TodoData\TodoDB.mdf'),   
+    (FILENAME = '$(FullScriptDir)\Tiferix.TodoData\TodoDB_Log.ldf')   
     FOR ATTACH;  

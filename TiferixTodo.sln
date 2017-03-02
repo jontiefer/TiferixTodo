@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{17E31BB1-A878-453E-96B4-79AF814FA0B7}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+		TodoDBAttach.bat = TodoDBAttach.bat
+		TodoDBAttach.sql = TodoDBAttach.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiferix.TodoData", "Tiferix.TodoData\Tiferix.TodoData.csproj", "{FDEC9DA2-13A5-4C3C-A7BD-5F95E48715D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiferix.TodoModel", "Tiferix.TodoModel\Tiferix.TodoModel.csproj", "{C74349A5-388E-4203-AB80-F3EF951B4D0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiferix.TodoTests", "Tiferix.TodoTests\Tiferix.TodoTests.csproj", "{79C31D3A-EBBC-4028-B223-C20726F1DE97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiferix.TodoUI", "Tiferix.TodoUI\Tiferix.TodoUI.csproj", "{A84B13F4-C94F-4744-98EE-64CBEC9C6826}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDEC9DA2-13A5-4C3C-A7BD-5F95E48715D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDEC9DA2-13A5-4C3C-A7BD-5F95E48715D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDEC9DA2-13A5-4C3C-A7BD-5F95E48715D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDEC9DA2-13A5-4C3C-A7BD-5F95E48715D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C74349A5-388E-4203-AB80-F3EF951B4D0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C74349A5-388E-4203-AB80-F3EF951B4D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C74349A5-388E-4203-AB80-F3EF951B4D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C74349A5-388E-4203-AB80-F3EF951B4D0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79C31D3A-EBBC-4028-B223-C20726F1DE97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79C31D3A-EBBC-4028-B223-C20726F1DE97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79C31D3A-EBBC-4028-B223-C20726F1DE97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79C31D3A-EBBC-4028-B223-C20726F1DE97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A84B13F4-C94F-4744-98EE-64CBEC9C6826}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A84B13F4-C94F-4744-98EE-64CBEC9C6826}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A84B13F4-C94F-4744-98EE-64CBEC9C6826}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A84B13F4-C94F-4744-98EE-64CBEC9C6826}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
